@@ -1253,9 +1253,9 @@ static void _sde_kms_release_splash_resource(struct sde_kms *sde_kms,
 	/*remove all votes if eDP displays are done with splash*/
 	if (dp_display_get_num_of_boot_displays()) {
 		for (i = 0; i < SDE_POWER_HANDLE_DBUS_ID_MAX; i++)
-			sde_power_data_bus_set_quota(phandle, i,
+			sde_power_data_bus_set_quota(&priv->phandle, i,
 				SDE_POWER_HANDLE_ENABLE_BUS_AB_QUOTA,
-				phandle->ib_quota[i]);
+				&priv->phandle->ib_quota[i]);
 		pm_runtime_put_sync(sde_kms->dev->dev);
 		sde_kms->splash_data.num_splash_displays--;
 	}
